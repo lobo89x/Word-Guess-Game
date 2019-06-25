@@ -66,27 +66,45 @@ function letterguess(A) {
         }
     }
     else{
-        for (var i=0; i<wrong.length+1; i++) {
-            if(wrong[i] == A) {
-                alert("You already tried "+A);
-            }
-            else {
+        // for (var i=0; i<wrong.length; i++) {
+        //     if(wrong[i] == A) {
+        //         alert("You already tried "+A);
+        //     }
+        //     else {
                 wrong.push(A);
                 badg--
-            }
-        }
+        //     }
+        // }
         
 
     }
-    log(current);
-    document.getElementById("WordProgress").innerHTML = current;
-
-    log("you got these wrong   "+wrong);
+    // log(current);
+    // document.getElementById("WordProgress").innerHTML = current;
+    
+    // log("you got these wrong   "+wrong);
 }
 
 function repeat(){
-log("win:: "+wins+" | loose:: "+losses);
-log("num oguesses left::  "+badg)
+    log("win:: "+wins+" | loose:: "+losses);
+    log("num oguesses left::  "+badg)
+    document.getElementById("Attleft").innerHTML = badg;
+    document.getElementById("WordProgress").innerHTML = current.join(" ");
+    document.getElementById("badAtt").innerHTML = wrong.join(" ");
+
+        if(wordarr.toString()==current.toString()){
+            wins++;
+            alert("Tadris has been unlocked! Great Job!!!");
+            document.getElementById("win").innerHTML = wins;
+            gamestart();
+
+        }
+        else if(badg<1){
+            losses++;
+            alert("The tardis is now quantum locked! You fialed!!");
+            document.getElementById("loss").innerHTML = losses;
+            gamestart();
+            badg = 9;
+        }
 }
 
 
@@ -99,7 +117,7 @@ document.onkeyup = function(event) {
     // log("this is the key pressed  "+event.key)
     letterguess(userGuess);
     repeat();
-    log(current);
+    // log(current.join(" "));
   }
 
 
