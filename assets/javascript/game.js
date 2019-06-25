@@ -92,13 +92,18 @@ function result(){
         if(wordarr.toString()==current.toString()){
             wins++;
             document.getElementById("WordProgress").innerHTML = current.join(" ");
+            var a1 = new Audio("assets/sounds/Doctor Who Theme 10.mp3");
+            a1.play();
+            alert("Passphrase was  :  "+current.join(" "));
             alert("Tadris has been unlocked! Great Job!!!");
             document.getElementById("win").innerHTML = wins;
+            a1.pause();
             gamestart();
 
         }
         else if(badg<1){
             losses++;
+            alert("Passphrase was  :  "+wordarr.join(" "));
             alert("The tardis is now quantum locked! You fialed!!");
             document.getElementById("loss").innerHTML = losses;
             gamestart();

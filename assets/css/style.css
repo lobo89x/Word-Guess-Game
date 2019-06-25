@@ -1,5 +1,8 @@
 body {
     color: rgb(2, 114, 114);
-    background-color: rgb(162, 247, 240);
+    background-color: rgb(162, 250, 221);
     font-family: 'Source Code Pro', monospace;
+}
+.jumbotron {
+    background-color: rgb(125, 253, 204);
 }
