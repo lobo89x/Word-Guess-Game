@@ -1,12 +1,9 @@
 //global used varriables
 //______________________________________________________
 var log = console.log;
-// var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
-var word = ["Alex", "Lee"];
-// var answer = word[randomWrd];
+var word = ["wibblywobbly timeywimey", "alonsy","jellybaby","geronimo","fantastic","nonsense","dash","run","imposiblegirl","who","wonder","polarity","brilliant"];
 var numoblank = 0;
 var wordarr = [];
-// var randW = "";
 var current = [];
 var wrong = [];
 var wins = 0;
@@ -21,24 +18,24 @@ var badg = 9;
 // document.getElementById("hud").innerHTML = 'Bad guesses:  '+badg;
 
 function gamestart() {
-    var randomWrd = Math.floor(Math.random() * 2);
+    var randomWrd = Math.floor(Math.random() * 13);
     wordarr = word[randomWrd].split("");
     numoblank = wordarr.length;
 
     //reset counters
-    var current = [];
-    var wrong = [];
-    var badg = 9;
+    current = [];
+    wrong = [];
+    badg = 9;
 
     for (var i=0; i<numoblank; i++){
         current.push("_");
     }
-
+    // link back to the html
     document.getElementById("WordProgress").innerHTML = current.join(" ");
     document.getElementById("win").innerHTML = wins;
     document.getElementById("badAtt").innerHTML = wrong.join(" ");
     document.getElementById("Attleft").innerHTML = badg;
-
+    //logs to test my vars
     log('THis is your word  :::  '+word[randomWrd]);
     log('this is the array of that word!:::  '+wordarr);
     log('this is the number of blank needed!!!::  '+numoblank);
@@ -48,24 +45,28 @@ function gamestart() {
 }
 
 function letterguess(A) {
+    //make trigger for if letter in word
     var letterinword = false;
-
-    for (var i=0; i<numoblank; i++) {
-        if(wordarr[i] == A) {
+    //check if letter is in word
+    for (var k=0; k<numoblank; k++) {
+        if(wordarr[k] == A) {
             letterinword = true;
             log("letter is in word::: "+letterinword);
         }
     }
-    if (letterinword) {
-        for (var i=0; i<numoblank; i++) {
-            if(wordarr[i] == A) {
-                current[i] = A;
+    //since letter is in word... we replace the space
+    if (letterinword==true) {
+        for (var j=0; j<numoblank; j++) {
+            if(wordarr[j] == A) {
+                current[j] = A;
                 log("this is the current "+current.join(" "))
                 // alert(A+"  is in the word")
             }
+            
         }
     }
     else{
+        // need
         // for (var i=0; i<wrong.length; i++) {
         //     if(wrong[i] == A) {
         //         alert("You already tried "+A);
@@ -78,13 +79,10 @@ function letterguess(A) {
         
 
     }
-    // log(current);
-    // document.getElementById("WordProgress").innerHTML = current;
-    
-    // log("you got these wrong   "+wrong);
+log("checking the progress  "+current)
 }
-
-function repeat(){
+// funciton to return results and check if user wins
+function result(){
     log("win:: "+wins+" | loose:: "+losses);
     log("num oguesses left::  "+badg)
     document.getElementById("Attleft").innerHTML = badg;
@@ -93,6 +91,7 @@ function repeat(){
 
         if(wordarr.toString()==current.toString()){
             wins++;
+            document.getElementById("WordProgress").innerHTML = current.join(" ");
             alert("Tadris has been unlocked! Great Job!!!");
             document.getElementById("win").innerHTML = wins;
             gamestart();
@@ -107,8 +106,6 @@ function repeat(){
         }
 }
 
-
-
 gamestart();
 
 document.onkeyup = function(event) {
@@ -116,39 +113,6 @@ document.onkeyup = function(event) {
     // log("this is the user guess "+userGuess)
     // log("this is the key pressed  "+event.key)
     letterguess(userGuess);
-    repeat();
+    result();
     // log(current.join(" "));
   }
-
-
-// if (badg > 9) {
-
-
-    
-    //tennant1
-    // var randomWrd = Math.floor(Math.random() * 14);
-    // log("random number = "+randomWrd)
-//     if (randomWrd === 0) {
-//         if () {
-
-//         }
-//         else if () {
-
-//         }
-//         else 
-
-//     }
-//     else if (randomWrd === 0) {
-
-//     }
-    
-
-// }
-// else{
-//     alert("Sorry but you loose!");
-//     losses++;
-//     var again = confirm("Play Again?");
-//     if (confirm){
-//         var badg === 0;
-//     }
-// }
