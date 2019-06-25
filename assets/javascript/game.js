@@ -11,7 +11,7 @@ var current = [];
 var wrong = [];
 var wins = 0;
 var losses = 0;
-var badg = 0;
+var badg = 9;
 // document.onkeyup = function(event) {
 // var userGuess = event.key;
 // //   }
@@ -28,13 +28,16 @@ function gamestart() {
     //reset counters
     var current = [];
     var wrong = [];
-    var badg = 0;
+    var badg = 9;
 
     for (var i=0; i<numoblank; i++){
         current.push("_");
     }
 
     document.getElementById("WordProgress").innerHTML = current.join(" ");
+    document.getElementById("win").innerHTML = wins;
+    document.getElementById("badAtt").innerHTML = wrong.join(" ");
+    document.getElementById("Attleft").innerHTML = badg;
 
     log('THis is your word  :::  '+word[randomWrd]);
     log('this is the array of that word!:::  '+wordarr);
@@ -50,15 +53,53 @@ function letterguess(A) {
     for (var i=0; i<numoblank; i++) {
         if(wordarr[i] == A) {
             letterinword = true;
+            log("letter is in word::: "+letterinword);
         }
     }
+    if (letterinword) {
+        for (var i=0; i<numoblank; i++) {
+            if(wordarr[i] == A) {
+                current[i] = A;
+                log("this is the current "+current.join(" "))
+                // alert(A+"  is in the word")
+            }
+        }
+    }
+    else{
+        for (var i=0; i<wrong.length+1; i++) {
+            if(wrong[i] == A) {
+                alert("You already tried "+A);
+            }
+            else {
+                wrong.push(A);
+                badg--
+            }
+        }
+        
+
+    }
+    log(current);
+    document.getElementById("WordProgress").innerHTML = current;
+
+    log("you got these wrong   "+wrong);
 }
+
+function repeat(){
+log("win:: "+wins+" | loose:: "+losses);
+log("num oguesses left::  "+badg)
+}
+
+
 
 gamestart();
 
 document.onkeyup = function(event) {
-    var userGuess = String.fromCharCode(event.key).toLowerCase();
+    var userGuess = (event.key).toLowerCase();
+    // log("this is the user guess "+userGuess)
+    // log("this is the key pressed  "+event.key)
     letterguess(userGuess);
+    repeat();
+    log(current);
   }
 
 
