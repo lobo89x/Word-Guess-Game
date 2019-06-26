@@ -92,7 +92,8 @@ function result(){
         if(wordarr.toString()==current.toString()){
             wins++;
             document.getElementById("WordProgress").innerHTML = current.join(" ");
-            var a1 = new Audio("assets/sounds/Doctor Who Theme 10.mp3");
+            var a1;
+            a1 = new Audio("assets/sounds/Doctor Who Theme 10.mp3");
             a1.play();
             alert("Passphrase was  :  "+current.join(" "));
             alert("Tadris has been unlocked! Great Job!!!");

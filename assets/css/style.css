@@ -1,8 +1,9 @@
 body {
     color: rgb(2, 114, 114);
-    background-color: rgb(162, 250, 221);
+    /* background-color: rgb(162, 250, 221); */
+    background: radial-gradient(rgb(240, 154, 255), rgb(248, 225, 176));
     font-family: 'Source Code Pro', monospace;
 }
 .jumbotron {
-    background-color: rgb(125, 253, 204);
+    background-color: rgb(175, 200, 191);
 }
