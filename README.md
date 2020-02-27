@@ -1,3 +1,3 @@
 # Word-Guess-Game
 
-THis is a hangman - esque typ game. made using javascript, bootstrap, CSS and HTML.
+This is a hangman - esque type game. It is made using javascript, bootstrap, CSS and HTML using a few simple functions.
