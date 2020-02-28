@@ -9,15 +9,20 @@ var wrong = [];
 var wins = 0;
 var losses = 0;
 var badg = 9;
-// document.onkeyup = function(event) {
-// var userGuess = event.key;
-// //   }
-// var userGuess = event.key.toLowerCase();
-// var wordarr = word[randomWrd].toCharArray();
 
-// document.getElementById("hud").innerHTML = 'Bad guesses:  '+badg;
+var a1 = new Audio("./assets/sounds/Doctor Who Theme 10.mp3");
+
+function playWin() {
+    a1.play();
+};
+
+function pauseWin() {
+    a1.pause();
+};
+
 
 function gamestart() {
+    pauseWin();
     var randomWrd = Math.floor(Math.random() * 13);
     wordarr = word[randomWrd].split("");
     numoblank = wordarr.length;
@@ -35,11 +40,11 @@ function gamestart() {
     document.getElementById("win").innerHTML = wins;
     document.getElementById("badAtt").innerHTML = wrong.join(" ");
     document.getElementById("Attleft").innerHTML = badg;
-    //logs to test my vars
-    log('THis is your word  :::  '+word[randomWrd]);
-    log('this is the array of that word!:::  '+wordarr);
-    log('this is the number of blank needed!!!::  '+numoblank);
-    log('this is the current status of the word   '+current);
+    // //logs to test my vars
+    // log('THis is your word  :::  '+word[randomWrd]);
+    // log('this is the array of that word!:::  '+wordarr);
+    // log('this is the number of blank needed!!!::  '+numoblank);
+    // log('this is the current status of the word   '+current);
 
 
 }
@@ -60,29 +65,19 @@ function letterguess(A) {
             if(wordarr[j] == A) {
                 current[j] = A;
                 log("this is the current "+current.join(" "))
-                // alert(A+"  is in the word")
+                
             }
             
         }
     }
     else{
-        // need
-        // for (var i=0; i<wrong.length; i++) {
-        //     if(wrong[i] == A) {
-        //         alert("You already tried "+A);
-        //     }
-        //     else {
-                wrong.push(A);
-                badg--
-        //     }
-        // }
-        
-
+            wrong.push(A);
+            badg--;
     }
-log("checking the progress  "+current)
+log("checking the progress  "+current);
 }
 // funciton to return results and check if user wins
-function result(){
+function result(A){
     log("win:: "+wins+" | loose:: "+losses);
     log("num oguesses left::  "+badg)
     document.getElementById("Attleft").innerHTML = badg;
@@ -90,15 +85,18 @@ function result(){
     document.getElementById("badAtt").innerHTML = wrong.join(" ");
 
         if(wordarr.toString()==current.toString()){
+            for (var j=0; j<numoblank; j++) {
+                if(wordarr[j] == A) {
+                    current[j] = A;
+                }
+            }
+            playWin();
             wins++;
             document.getElementById("WordProgress").innerHTML = current.join(" ");
-            var a1;
-            a1 = new Audio("assets/sounds/Doctor Who Theme 10.mp3");
-            a1.play();
             alert("Passphrase was  :  "+current.join(" "));
             alert("Tadris has been unlocked! Great Job!!!");
             document.getElementById("win").innerHTML = wins;
-            a1.pause();
+            //a1.pause();
             gamestart();
 
         }
@@ -116,9 +114,6 @@ gamestart();
 
 document.onkeyup = function(event) {
     var userGuess = (event.key).toLowerCase();
-    // log("this is the user guess "+userGuess)
-    // log("this is the key pressed  "+event.key)
     letterguess(userGuess);
-    result();
-    // log(current.join(" "));
+    result(userGuess);
   }
